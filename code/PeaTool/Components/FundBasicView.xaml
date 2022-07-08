@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="PeaTool.Components.FundBasicView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PeaTool.Components"
+             xmlns:do="clr-namespace:PeaTool.DataObject"
+             d:DataContext="{d:DesignInstance Type=do:FundBasicInfoData}"
+             mc:Ignorable="d">
+    <!--第一个元素-->
+    <Grid Margin="0,5,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="1"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="70"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <TextBlock Text="{Binding name}" TextWrapping="Wrap" Margin="10,0"/>
+            <TextBlock Text="{Binding code}" Margin="10,2,10,4" Foreground="#666666" FontSize="11"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Margin="5,0">
+            <TextBlock Text="{Binding price}"/>
+            <TextBlock Text="{Binding changePercent, Converter={StaticResource percentFollowConverter}}" 
+                       FontSize="11" 
+                       Foreground="{Binding changePercent, Converter={StaticResource colorPickConverter}, ConverterParameter='#E7636B,#50A080'}"/>
+        </StackPanel>
+        <!--分割线-->
+        <Grid Grid.Row="1" Background="#DDDDDD" Grid.ColumnSpan="3">
+            <Grid.RenderTransform>
+                <ScaleTransform ScaleY="0.5"/>
+            </Grid.RenderTransform>
+        </Grid>
+    </Grid>
+</UserControl>

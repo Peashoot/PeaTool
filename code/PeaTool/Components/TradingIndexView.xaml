@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="PeaTool.Components.TradingIndexView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PeaTool.Components"
+             xmlns:do="clr-namespace:PeaTool.DataObject"
+             d:DataContext="{d:DesignInstance Type=do:StockTimeSplitData}"
+             mc:Ignorable="d">
+    <StackPanel Width="92" Margin="10,5">
+        <TextBlock Text="{Binding name}" FontSize="17"/>
+        <TextBlock Text="{Binding price}" 
+                   Foreground="{Binding changePercent, Converter={StaticResource colorPickConverter}, ConverterParameter='#E7636B,#50A080'}" 
+                   FontSize="21"/>
+        <TextBlock Text="{Binding changePercent, Converter={StaticResource percentFollowConverter}}" 
+                   Foreground="{Binding changePercent, Converter={StaticResource colorPickConverter}, ConverterParameter='#E7636B,#50A080'}" 
+                   FontSize="15"/>
+    </StackPanel>
+</UserControl>

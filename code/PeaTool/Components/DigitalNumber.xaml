@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="PeaTool.Components.DigitalNumber"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PeaTool.Components"
+             mc:Ignorable="d" 
+             d:DesignHeight="161" d:DesignWidth="100">
+    <Grid x:Name="MainGrid">
+        <Grid.Resources>
+            <local:ThicknessDoubleValueConverter x:Key="thicknessConverter"/>
+            <DiscreteObjectKeyFrame x:Key="proxyBorderColor" 
+                Value="{Binding Path=BorderColor, 
+                RelativeSource={RelativeSource FindAncestor, 
+                AncestorType=local:DigitalNumber}}"/>
+            <DiscreteObjectKeyFrame x:Key="proxyBoundaryThickness" 
+                Value="{Binding Path=BoundaryThickness, 
+                RelativeSource={RelativeSource FindAncestor, 
+                AncestorType=local:DigitalNumber}}"/>
+            <Style TargetType="Path">
+                <Setter Property="Stroke" Value="{Binding Value, Source={StaticResource proxyBorderColor}}"/>
+                <Setter Property="StrokeThickness" Value="{Binding Value, Source={StaticResource proxyBoundaryThickness}, Converter={StaticResource thicknessConverter}}"/>
+                <Setter Property="VerticalAlignment" Value="Top"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+            </Style>
+        </Grid.Resources>
+        <Path x:Name="TopLine" 
+              Data="M0,6 L7,0 63,0 67,6 60,11 5,11 Z" 
+              Margin="27,0,0,0" Height="12"/>
+        <Path x:Name="LeftTop" 
+              Data="M0,65 L8,5 13,0 18,5 10,65 4,70 z" 
+              Margin="12,8,0,0" Height="71" Width="19"/>
+        <Path x:Name="MiddleLine" 
+            Data="M0,6 L7,0 63,0 67,6 60,11 5,11 Z" Height="12" 
+            Margin="17,74.334,10,0"/>
+        <Path x:Name="BottomLine"
+            Data="M0,6 L7,0 63,0 67,6 60,11 5,11 Z" 
+            Margin="8,149,0,0" Height="12"/>
+        <Path x:Name="RightTop" 
+            Data="M0,65 L7,5 13,0 18,7 11,65 4,71 z" 
+            Margin="82,8,0,0" Height="72" Width="18"/>
+        <Path x:Name="LeftBottom" 
+            Data="M0,65 L8,5 13,0 19,6 11,65 4,71 z" 
+            Margin="2,82,0,8" Width="19" Height="71"/>
+        <Path x:Name="RightBottom" 
+            Data="M0,64 L6,6 13,1 17,7 11,66 5,71 z" 
+            Margin="73,82,0,0" Width="19" Height="72"/>
+    </Grid>
+</UserControl>
